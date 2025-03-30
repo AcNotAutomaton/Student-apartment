@@ -3257,7 +3257,7 @@ server:
 
 **3. 创建SpringBoot启动类**
 
-在**web-admin模块**下创建`com..lease.AdminWebApplication`类，内容如下：
+在**web-admin模块**下创建`com.example.lease.AdminWebApplication`类，内容如下：
 
 ```java
 @SpringBootApplication
@@ -3332,11 +3332,11 @@ mybatis-plus:
 
 **3. 配置类**
 
-在**common模块**下创建`com..lease.common.mybatisplus.MybatisPlusConfiguration`类，内容如下：
+在**common模块**下创建`com.example.lease.common.mybatisplus.MybatisPlusConfiguration`类，内容如下：
 
 ```java
 @Configuration
-@MapperScan("com..lease.web.*.mapper")
+@MapperScan("com.example.lease.web.*.mapper")
 public class MybatisPlusConfiguration {
   
 }
@@ -3372,7 +3372,7 @@ public class MybatisPlusConfiguration {
 
 **2. 配置类**
 
-后台管理系统和移动端的接口配置并不相同，所以需各自编写一个配置类。在**web-admin模块**下创建`com..lease.web.admin.custom.config.Knife4jConfiguration`类，内容如下：
+后台管理系统和移动端的接口配置并不相同，所以需各自编写一个配置类。在**web-admin模块**下创建`com.example.lease.web.admin.custom.config.Knife4jConfiguration`类，内容如下：
 
 ```java
 @Configuration
@@ -3452,14 +3452,14 @@ public class Knife4jConfiguration {
 
 导入的代码和目标位置如下：
 
-| 导入代码    | 模块      | 包名/路径                           | 说明                                   |
-| ----------- | --------- | ----------------------------------- | -------------------------------------- |
-| 实体类      | model     | `com..lease.model.entity`           | 与数据库表一一对应                     |
-| 枚举类      | model     | `com..lease.model.enums`            | 实体类中的某些状态类字段，使用枚举类型 |
-| mapper接口  | web-admin | `com..lease.web.admin.mapper`       | 略                                     |
-| mapper xml  | web-admin | src/main/resources/mapper           | 略                                     |
-| service     | web-admin | `com..lease.web.admin.service`      | 略                                     |
-| serviceImpl | web-admin | `com..lease.web.admin.service.impl` | 略                                     |
+| 导入代码    | 模块      | 包名/路径                                  | 说明                                   |
+| ----------- | --------- | ------------------------------------------ | -------------------------------------- |
+| 实体类      | model     | `com.example.lease.model.entity`           | 与数据库表一一对应                     |
+| 枚举类      | model     | `com.example.lease.model.enums`            | 实体类中的某些状态类字段，使用枚举类型 |
+| mapper接口  | web-admin | `com.example.lease.web.admin.mapper`       | 略                                     |
+| mapper xml  | web-admin | src/main/resources/mapper                  | 略                                     |
+| service     | web-admin | `com.example.lease.web.admin.service`      | 略                                     |
+| serviceImpl | web-admin | `com.example.lease.web.admin.service.impl` | 略                                     |
 
 **知识点**：
 
@@ -3528,11 +3528,11 @@ public class Knife4jConfiguration {
 
 导入的代码和目标位置如下：
 
-| 导入代码   | 模块      | 包名/路径                         | 说明                                                |
-| ---------- | --------- | --------------------------------- | --------------------------------------------------- |
-| controller | web-admin | `com..lease.web.admin.controller` | 略                                                  |
-| vo         | web-admin | `com..lease.web.admin.vo`         | View Object，用于封装或定义接口接受及返回的数据结构 |
-| result     | common    | `com..lease.common.result`        | 统一定义接口返回的数据结构                          |
+| 导入代码   | 模块      | 包名/路径                                | 说明                                                |
+| ---------- | --------- | ---------------------------------------- | --------------------------------------------------- |
+| controller | web-admin | `com.example.lease.web.admin.controller` | 略                                                  |
+| vo         | web-admin | `com.example.lease.web.admin.vo`         | View Object，用于封装或定义接口接受及返回的数据结构 |
+| result     | common    | `com.example.lease.common.result`        | 统一定义接口返回的数据结构                          |
 
 导入完成后，便可启动SpringBoot项目，并访问接口文档了，Knife4j文档的url为：http://localhost:8080/doc.html。
 
@@ -3841,7 +3841,7 @@ public Result saveOrUpdatePaymentType(@RequestBody PaymentType paymentType) {
   
   - 配置自动填充的内容，具体配置如下
   
-    在**common模块**下创建`com..lease.common.mybatisplus.MybatisMetaObjectHandler`类，内容如下：
+    在**common模块**下创建`com.example.lease.common.mybatisplus.MybatisMetaObjectHandler`类，内容如下：
   
     ```java
     @Component
@@ -4046,7 +4046,7 @@ public Result<List<LabelInfo>> labelList(@RequestParam(required = false) ItemTyp
 
   `WebDataBinder`依赖于[`Converter`](https://docs.spring.io/spring-framework/reference/core/validation/convert.html)实现类型转换，若Controller方法声明的`@RequestParam`参数的类型不是`String`，`WebDataBinder`就会自动进行数据类型转换。SpringMVC提供了常用类型的转换器，例如`String`到`Integer`、`String`到`Date`，`String`到`Boolean`等等，其中也包括`String`到枚举类型，但是`String`到枚举类型的默认转换规则是根据实例名称（"APARTMENT"）转换为枚举对象实例（ItemType.APARTMENT）。若想实现`code`属性到枚举对象实例的转换，需要自定义`Converter`，代码如下，具体内容可参考[官方文档](https://docs.spring.io/spring-framework/reference/core/validation/convert.html#core-convert-Converter-API)。
 
-  - 在**web-admin模块**自定义`com..lease.web.admin.custom.converter.StringToItemTypeConverter`
+  - 在**web-admin模块**自定义`com.example.lease.web.admin.custom.converter.StringToItemTypeConverter`
 
     ```java
     @Component
@@ -4064,7 +4064,7 @@ public Result<List<LabelInfo>> labelList(@RequestParam(required = false) ItemTyp
     }
     ```
 
-  - 注册上述的`StringToItemTypeConverter`，在**web-admin模块**创建`com..lease.web.admin.custom.config.WebMvcConfiguration`，内容如下：
+  - 注册上述的`StringToItemTypeConverter`，在**web-admin模块**创建`com.example.lease.web.admin.custom.config.WebMvcConfiguration`，内容如下：
 
     ```java
     @Configuration
@@ -4082,7 +4082,7 @@ public Result<List<LabelInfo>> labelList(@RequestParam(required = false) ItemTyp
 
   但是我们有很多的枚举类型都需要考虑类型转换这个问题，按照上述思路，我们需要为每个枚举类型都定义一个Converter，并且每个Converter的转换逻辑都完全相同，针对这种情况，我们使用[`ConverterFactory`](https://docs.spring.io/spring-framework/reference/core/validation/convert.html#core-convert-ConverterFactory-SPI)接口更为合适，这个接口可以将同一个转换逻辑应用到一个接口的所有实现类，因此我们可以定义一个`BaseEnum`接口，然后另所有的枚举类都实现该接口，然后就可以自定义`ConverterFactory`，集中编写各枚举类的转换逻辑了。具体实现如下：
 
-  - 在**model模块**定义`com..lease.model.enums.BaseEnum`接口
+  - 在**model模块**定义`com.example.lease.model.enums.BaseEnum`接口
 
     ```java
     public interface BaseEnum {
@@ -4091,9 +4091,9 @@ public Result<List<LabelInfo>> labelList(@RequestParam(required = false) ItemTyp
     }
     ```
 
-  - 令所有`com..lease.model.enums`包下的枚举类都实现`BaseEnun`接口
+  - 令所有`com.example.lease.model.enums`包下的枚举类都实现`BaseEnun`接口
 
-  - 在**web-admin模块**自定义`com..lease.web.admin.custom.converter.StringToBaseEnumConverterFactory`
+  - 在**web-admin模块**自定义`com.example.lease.web.admin.custom.converter.StringToBaseEnumConverterFactory`
 
     ```java
     @Component
@@ -4116,7 +4116,7 @@ public Result<List<LabelInfo>> labelList(@RequestParam(required = false) ItemTyp
     }
     ```
 
-  - 注册上述的`ConverterFactory`，在**web-admin模块**创建`com..lease.web.admin.custom.config.WebMvcConfiguration`，内容如下：
+  - 注册上述的`ConverterFactory`，在**web-admin模块**创建`com.example.lease.web.admin.custom.config.WebMvcConfiguration`，内容如下：
 
     ```java
     @Configuration
@@ -4301,7 +4301,7 @@ public Result saveOrUpdateAttrValue(@RequestBody AttrValue attrValue) {
 
 - **查看响应的数据结构**
 
-  查看**web-admin模块**下的`com..lease.web.admin.vo.attr.AttrKeyVo`，内容如下：
+  查看**web-admin模块**下的`com.example.lease.web.admin.vo.attr.AttrKeyVo`，内容如下：
 
   ```java
   @Data
@@ -4357,10 +4357,10 @@ public Result saveOrUpdateAttrValue(@RequestBody AttrValue attrValue) {
   对应的在`AttrKeyMapper.xml`中增加如下内容
 
   ```xml
-  <resultMap id="BaseResultMap" type="com..lease.web.admin.vo.attr.AttrKeyVo">
+  <resultMap id="BaseResultMap" type="com.example.lease.web.admin.vo.attr.AttrKeyVo">
       <id property="id" column="id"/>
       <result property="name" column="key_name"/>
-      <collection property="attrValueList" ofType="com..lease.model.entity.AttrValue">
+      <collection property="attrValueList" ofType="com.example.lease.model.entity.AttrValue">
           <id column="value_id" property="id"/>
           <result column="value_name" property="name"/>
           <result column="key_id" property="attrKeyId"/>
@@ -4461,7 +4461,7 @@ public Result saveOrUpdateFeeValue(@RequestBody FeeValue feeValue) {
 
 - **查看响应的数据结构**
 
-  查看**web-admin模块**下创的`com..lease.web.admin.vo.fee.FeeKeyVo`，内容如下
+  查看**web-admin模块**下创的`com.example.lease.web.admin.vo.fee.FeeKeyVo`，内容如下
 
   ```java
   @Data
@@ -4518,10 +4518,10 @@ public Result saveOrUpdateFeeValue(@RequestBody FeeValue feeValue) {
   - 在`FeeKeyMapper.xml`中增加如下内容
 
     ```java
-    <resultMap id="FeeInfoList" type="com..lease.web.admin.vo.fee.FeeKeyVo">
+    <resultMap id="FeeInfoList" type="com.example.lease.web.admin.vo.fee.FeeKeyVo">
         <id property="id" column="id"/>
         <result property="name" column="key_name"/>
-        <collection property="feeValueList" ofType="com..lease.model.entity.FeeValue">
+        <collection property="feeValueList" ofType="com.example.lease.model.entity.FeeValue">
             <id column="value_id" property="id"/>
             <result column="value_name" property="name"/>
             <result column="value_unit" property="unit"/>
@@ -4665,7 +4665,7 @@ public class RegionInfoController {
 
     **注意**：上述`<hostname>`、`<port>`等信息需根据实际情况进行修改。
 
-  - 在**common模块**中创建`com..lease.common.minio.MinioProperties`，内容如下
+  - 在**common模块**中创建`com.example.lease.common.minio.MinioProperties`，内容如下
 
     ```java
     @ConfigurationProperties(prefix = "minio")
@@ -4682,7 +4682,7 @@ public class RegionInfoController {
     }
     ```
 
-  - 在**common模块**中创建`com..lease.common.minio.MinioConfiguration`，内容如下
+  - 在**common模块**中创建`com.example.lease.common.minio.MinioConfiguration`，内容如下
   
     ```java
     @Configuration
@@ -4875,7 +4875,7 @@ public class RegionInfoController {
     
         具体用法如下，详细信息可参考[官方文档](https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-exceptionhandler.html)：
     
-        在**common模块**中创建`com..lease.common.exception.GlobalExceptionHandler`类，内容如下
+        在**common模块**中创建`com.example.lease.common.exception.GlobalExceptionHandler`类，内容如下
     
         ```java
         @ControllerAdvice
@@ -4942,7 +4942,7 @@ public class ApartmentController {
 
 - **查看请求的数据结构**
 
-  查看**web-admin模块**中的`com..lease.web.admin.vo.apartment.ApartmentSubmitVo`类，内容如下：
+  查看**web-admin模块**中的`com.example.lease.web.admin.vo.apartment.ApartmentSubmitVo`类，内容如下：
 
   ```java
   @Schema(description = "公寓信息")
@@ -5107,7 +5107,7 @@ public class ApartmentController {
 
   - **响应数据结构**
 
-    单个公寓信息记录可查看`com..lease.web.admin.vo.apartment.ApartmentItemVo`，内容如下：
+    单个公寓信息记录可查看`com.example.lease.web.admin.vo.apartment.ApartmentItemVo`，内容如下：
 
     ```java
     @Data
@@ -5125,7 +5125,7 @@ public class ApartmentController {
 
 - **配置Mybatis-Plus分页插件**
 
-  在**common模块**中的`com..lease.common.mybatisplus.MybatisPlusConfiguration`中增加如下内容：
+  在**common模块**中的`com.example.lease.common.mybatisplus.MybatisPlusConfiguration`中增加如下内容：
 
   ```java
   @Bean
@@ -5182,7 +5182,7 @@ public class ApartmentController {
     - 在`ApartmentInfoMapper.xml`中增加如下内容
     
       ```xml
-      <select id="pageItem" resultType="com..lease.web.admin.vo.apartment.ApartmentItemVo">
+      <select id="pageItem" resultType="com.example.lease.web.admin.vo.apartment.ApartmentItemVo">
           select ai.id,
                  ai.name,
                  ai.introduction,
@@ -5269,7 +5269,7 @@ public class ApartmentController {
 
 - **查看响应数据结构**
 
-  查看**web-admin**下的`com..lease.web.admin.vo.apartment.ApartmentDetailVo`，内容如下
+  查看**web-admin**下的`com.example.lease.web.admin.vo.apartment.ApartmentDetailVo`，内容如下
 
   ```java
   @Schema(description = "公寓信息")
@@ -5358,7 +5358,7 @@ public class ApartmentController {
     - 在`GraphInfoMapper.xml`中增加如下内容
 
       ```java
-      <select id="selectListByItemTypeAndId" resultType="com..lease.web.admin.vo.graph.GraphVo">
+      <select id="selectListByItemTypeAndId" resultType="com.example.lease.web.admin.vo.graph.GraphVo">
           select
               name,
               url
@@ -5380,7 +5380,7 @@ public class ApartmentController {
     - 在`LabelInfoMapper.xml`中增加如下内容
 
       ```java
-      <select id="selectListByApartmentId" resultType="com..lease.model.entity.LabelInfo">
+      <select id="selectListByApartmentId" resultType="com.example.lease.model.entity.LabelInfo">
           select id,
                  type,
                  name
@@ -5405,7 +5405,7 @@ public class ApartmentController {
     - 在`FacilityInfoMapper.xml`中增加如下内容
 
       ```java
-      <select id="selectListByApartmentId" resultType="com..lease.model.entity.FacilityInfo">
+      <select id="selectListByApartmentId" resultType="com.example.lease.model.entity.FacilityInfo">
           select id,
                  type,
                  name,
@@ -5431,7 +5431,7 @@ public class ApartmentController {
     - 在`FeeValueMapper.xml`中增加如下内容
 
       ```java
-      <select id="selectListByApartmentId" resultType="com..lease.web.admin.vo.fee.FeeValueVo">
+      <select id="selectListByApartmentId" resultType="com.example.lease.web.admin.vo.fee.FeeValueVo">
           SELECT fv.id,
                  fv.name,
                  fv.unit,
@@ -5521,7 +5521,7 @@ public class ApartmentController {
     
     为灵活设置响应信息，可自定义异常类，如下
     
-    在**common模块**创建`com..lease.common.exception.LeaseException`类，内容如下：
+    在**common模块**创建`com.example.lease.common.exception.LeaseException`类，内容如下：
     
     ```java
     @Data
@@ -5558,7 +5558,7 @@ public class ApartmentController {
     }
     ```
     
-    在**common模块**的`com..lease.common.exception.GlobalExceptionHandler`类中，增加自定义异常类的处理逻辑
+    在**common模块**的`com.example.lease.common.exception.GlobalExceptionHandler`类中，增加自定义异常类的处理逻辑
     
     ```java
     @ExceptionHandler(LeaseException.class)
@@ -5673,7 +5673,7 @@ public class RoomController {
 
 - **查看请求的数据结构**
 
-  查看**web-admin模块**中的`com..lease.web.admin.vo.room.RoomSubmitVo`，内容如下
+  查看**web-admin模块**中的`com.example.lease.web.admin.vo.room.RoomSubmitVo`，内容如下
 
   ```java
   @Data
@@ -5867,7 +5867,7 @@ public class RoomController {
 
   - **响应数据结构**
 
-    单个房间信息记录可查看`com..lease.web.admin.vo.room.RoomItemVo`，内容如下：
+    单个房间信息记录可查看`com.example.lease.web.admin.vo.room.RoomItemVo`，内容如下：
 
     ```java
     @Data
@@ -5927,9 +5927,9 @@ public class RoomController {
   - 在`RoomInfoMapper.xml`中增加如下内容
 
     ```java
-    <resultMap id="RoomItemVoMap" type="com..lease.web.admin.vo.room.RoomItemVo" autoMapping="true">
+    <resultMap id="RoomItemVoMap" type="com.example.lease.web.admin.vo.room.RoomItemVo" autoMapping="true">
         <id property="id" column="id"/>
-        <association property="apartmentInfo" javaType="com..lease.model.entity.ApartmentInfo" autoMapping="true">
+        <association property="apartmentInfo" javaType="com.example.lease.model.entity.ApartmentInfo" autoMapping="true">
             <id property="id" column="apart_id"/>
             <result property="isRelease" column="apart_is_release"/>
         </association>
@@ -5987,7 +5987,7 @@ public class RoomController {
 
 - **查看响应数据结构**
 
-  查看**web-admin**下的`com..lease.web.admin.vo.room.RoomDetailVo`，内容如下
+  查看**web-admin**下的`com.example.lease.web.admin.vo.room.RoomDetailVo`，内容如下
 
   ```java
   @Schema(description = "房间信息")
@@ -6097,7 +6097,7 @@ public class RoomController {
     - 在`AttrValueMapper.xml`中增加如下内容
 
       ```java
-      <select id="selectListByRoomId" resultType="com..lease.web.admin.vo.attr.AttrValueVo">
+      <select id="selectListByRoomId" resultType="com.example.lease.web.admin.vo.attr.AttrValueVo">
           select v.id,
                  v.name,
                  v.attr_key_id,
@@ -6124,7 +6124,7 @@ public class RoomController {
     - 在`FacilityInfoMapper.xml`中增加如下内容
 
       ```java
-      <select id="selectListByRoomId" resultType="com..lease.model.entity.FacilityInfo">
+      <select id="selectListByRoomId" resultType="com.example.lease.model.entity.FacilityInfo">
           select id,
                  type,
                  name,
@@ -6150,7 +6150,7 @@ public class RoomController {
     - 在`LabelInfoMapper.xml`中增加如下内容
 
       ```java
-      <select id="selectListByRoomId" resultType="com..lease.model.entity.LabelInfo">
+      <select id="selectListByRoomId" resultType="com.example.lease.model.entity.LabelInfo">
           select id,
                  type,
                  name
@@ -6175,7 +6175,7 @@ public class RoomController {
     - 在`PaymentTypeMapper.xml`中增加如下内容
 
       ```java
-      <select id="selectListByRoomId" resultType="com..lease.model.entity.PaymentType">
+      <select id="selectListByRoomId" resultType="com.example.lease.model.entity.PaymentType">
           select id,
                  name,
                  pay_month_count,
@@ -6201,7 +6201,7 @@ public class RoomController {
     - 在`Mapper.xml`中增加如下内容
   
       ```java
-      <select id="selectListByRoomId" resultType="com..lease.model.entity.LeaseTerm">
+      <select id="selectListByRoomId" resultType="com.example.lease.model.entity.LeaseTerm">
           select id,
                  month_count,
                  unit
@@ -6366,7 +6366,7 @@ public class ViewAppointmentController {
 
   - **响应数据结构**
 
-    单个看房预约信息的结构可查看**web-admin模块**下的`com..lease.web.admin.vo.appointment.AppointmentVo`，内容如下：
+    单个看房预约信息的结构可查看**web-admin模块**下的`com.example.lease.web.admin.vo.appointment.AppointmentVo`，内容如下：
 
     ```java
     @Data
@@ -6421,9 +6421,9 @@ public class ViewAppointmentController {
   - 在`ViewAppointmentMapper.xml`中增加如下内容
 
     ```xml
-    <resultMap id="AppointmentVoMap" type="com..lease.web.admin.vo.appointment.AppointmentVo" autoMapping="true">
+    <resultMap id="AppointmentVoMap" type="com.example.lease.web.admin.vo.appointment.AppointmentVo" autoMapping="true">
         <id property="id" column="id"/>
-        <association property="apartmentInfo" javaType="com..lease.model.entity.ApartmentInfo" autoMapping="true">
+        <association property="apartmentInfo" javaType="com.example.lease.model.entity.ApartmentInfo" autoMapping="true">
             <id property="id" column="apartment_id"/>
             <result property="name" column="apartment_name"/>
         </association>
@@ -6610,7 +6610,7 @@ public Result saveOrUpdate(@RequestBody LeaseAgreement leaseAgreement) {
       
   - **响应数据结构**
   
-      单个租约信息的结构可查看`com..lease.web.admin.vo.agreement.AgreementVo`，内容如下：
+      单个租约信息的结构可查看`com.example.lease.web.admin.vo.agreement.AgreementVo`，内容如下：
   
       ```java
       @Data
@@ -6673,20 +6673,20 @@ public Result saveOrUpdate(@RequestBody LeaseAgreement leaseAgreement) {
   - 在`LeaseAgreementMapper.xml`中增加如下内容
 
     ```java
-    <resultMap id="agreementVoMap" type="com..lease.web.admin.vo.agreement.AgreementVo" autoMapping="true">
+    <resultMap id="agreementVoMap" type="com.example.lease.web.admin.vo.agreement.AgreementVo" autoMapping="true">
         <id property="id" column="id"/>
-        <association property="apartmentInfo" javaType="com..lease.model.entity.ApartmentInfo" autoMapping="true">
+        <association property="apartmentInfo" javaType="com.example.lease.model.entity.ApartmentInfo" autoMapping="true">
             <id property="id" column="apartment_id"/>
             <result property="name" column="apartment_name"/>
         </association>
-        <association property="roomInfo" javaType="com..lease.model.entity.RoomInfo" autoMapping="true">
+        <association property="roomInfo" javaType="com.example.lease.model.entity.RoomInfo" autoMapping="true">
             <id property="id" column="room_id"/>
         </association>
-        <association property="paymentType" javaType="com..lease.model.entity.PaymentType" autoMapping="true">
+        <association property="paymentType" javaType="com.example.lease.model.entity.PaymentType" autoMapping="true">
             <id property="id" column="payment_type_id"/>
             <result property="name" column="payment_type_name"/>
         </association>
-        <association property="leaseTerm" javaType="com..lease.model.entity.LeaseTerm" autoMapping="true">
+        <association property="leaseTerm" javaType="com.example.lease.model.entity.LeaseTerm" autoMapping="true">
             <id property="id" column="lease_term_id"/>
         </association>
     </resultMap>
@@ -6864,7 +6864,7 @@ public Result updateStatusById(@RequestParam Long id, @RequestParam LeaseStatus 
 
 - 编写定时逻辑
 
-  在**web-admin模块**下创建`com..lease.web.admin.schedule.ScheduledTasks`类，内容如下
+  在**web-admin模块**下创建`com.example.lease.web.admin.schedule.ScheduledTasks`类，内容如下
 
   ```java
   @Component
@@ -7126,7 +7126,7 @@ public class SystemUserController {
 
   - **响应的数据结构**
 
-    单个系统用户信息的结构可查看**web-admin**模块下的`com..lease.web.admin.vo.system.user.SystemUserItemVo`，具体内容如下：
+    单个系统用户信息的结构可查看**web-admin**模块下的`com.example.lease.web.admin.vo.system.user.SystemUserItemVo`，具体内容如下：
 
     ```java
     @Data
@@ -7182,7 +7182,7 @@ public class SystemUserController {
 
     ```java
     <select id="pageSystemUserByQuery"
-            resultType="com..lease.web.admin.vo.system.user.SystemUserItemVo">
+            resultType="com.example.lease.web.admin.vo.system.user.SystemUserItemVo">
         select su.id,
                username,
                su.name,
@@ -7485,7 +7485,7 @@ public class LoginController {
 
 - **查看响应的数据结构**
 
-  查看**web-admin模块**下的`com..lease.web.admin.vo.login.CaptchaVo`，内容如下
+  查看**web-admin模块**下的`com.example.lease.web.admin.vo.login.CaptchaVo`，内容如下
 
   ```java
   @Data
@@ -7587,7 +7587,7 @@ public class LoginController {
 
     - `spring-boot-starter-data-redis`已经完成了`StringRedisTemplate`的自动配置，我们直接注入即可。
 
-    - 为方便管理，可以将Reids相关的一些值定义为常量，例如key的前缀、TTL时长，内容如下。大家可将这些常量统一定义在**common模块**下的`com..lease.common.constant.RedisConstant`类中
+    - 为方便管理，可以将Reids相关的一些值定义为常量，例如key的前缀、TTL时长，内容如下。大家可将这些常量统一定义在**common模块**下的`com.example.lease.common.constant.RedisConstant`类中
     
         ```java
         public class RedisConstant {
@@ -7619,7 +7619,7 @@ public class LoginController {
 
   - **查看请求数据结构**
 
-    查看**web-admin**模块下的`com..lease.web.admin.vo.login.LoginVo`，具体内容如下
+    查看**web-admin**模块下的`com.example.lease.web.admin.vo.login.LoginVo`，具体内容如下
 
     ```java
     @Data
@@ -7669,7 +7669,7 @@ public class LoginController {
     
     - **创建JWT工具类**
     
-      在**common模块**下创建`com..lease.common.utils.JwtUtil`工具类，内容如下
+      在**common模块**下创建`com.example.lease.common.utils.JwtUtil`工具类，内容如下
     
       ```java
       public class JwtUtil {
@@ -7764,7 +7764,7 @@ public class LoginController {
     - 在`LoginMapper.xml`中增加如下内容
   
       ```sql
-      <select id="selectOneByUsername" resultType="com..lease.model.entity.SystemUser">
+      <select id="selectOneByUsername" resultType="com.example.lease.model.entity.SystemUser">
           select id,
                  username,
                  password,
@@ -7807,7 +7807,7 @@ public class LoginController {
       
     - **编写HandlerInterceptor**
     
-      在**web-admin模块**中创建`com..lease.web.admin.custom.interceptor.AuthenticationInterceptor`类，内容如下，有关`HanderInterceptor`的相关内容，可参考[官方文档](https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-servlet/handlermapping-interceptor.html)。
+      在**web-admin模块**中创建`com.example.lease.web.admin.custom.interceptor.AuthenticationInterceptor`类，内容如下，有关`HanderInterceptor`的相关内容，可参考[官方文档](https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-servlet/handlermapping-interceptor.html)。
     
       ```java
       @Component
@@ -7828,7 +7828,7 @@ public class LoginController {
       
     - **注册HandlerInterceptor**
     
-      在**web-admin模块**的`com..lease.web.admin.custom.config.WebMvcConfiguration`中增加如下内容
+      在**web-admin模块**的`com.example.lease.web.admin.custom.config.WebMvcConfiguration`中增加如下内容
     
       ```java
       @Autowired
@@ -7858,7 +7858,7 @@ public class LoginController {
 
   - **响应的数据结构**
 
-    查看**web-admin模块**下的`com..lease.web.admin.vo.system.user.SystemUserInfoVo`，内容如下
+    查看**web-admin模块**下的`com.example.lease.web.admin.vo.system.user.SystemUserInfoVo`，内容如下
 
     ```java
     @Schema(description = "员工基本信息")
@@ -7922,7 +7922,7 @@ public class LoginController {
   >
   ><img src="images/ThreadLocal.drawio.png" style="zoom: 33%;" />
 
-  在**common模块**中创建`com..lease.common.login.LoginUserHolder`工具类
+  在**common模块**中创建`com.example.lease.common.login.LoginUserHolder`工具类
 
   ```java
   public class LoginUserHolder {
@@ -7942,7 +7942,7 @@ public class LoginController {
   }
   ```
 
-  同时在**common模块**中创建`com..lease.common.login.LoginUser`类
+  同时在**common模块**中创建`com.example.lease.common.login.LoginUser`类
 
   ```java
   @Data
@@ -8087,7 +8087,7 @@ server:
 
 **2. 创建SpringBoot启动类**
 
-在**web-app模块**下创建`com..lease.AppWebApplication`类，内容如下：
+在**web-app模块**下创建`com.example.lease.AppWebApplication`类，内容如下：
 
 ```java
 @SpringBootApplication
@@ -8132,7 +8132,7 @@ mybatis-plus:
 
 **1. 配置类**
 
-在**web-app模块**下创建`com..lease.web.app.custom.config.Knife4jConfiguration`类，内容如下：
+在**web-app模块**下创建`com.example.lease.web.app.custom.config.Knife4jConfiguration`类，内容如下：
 
 ```java
 @Configuration
@@ -8197,21 +8197,21 @@ springdoc:
 
 导入的代码和目标位置如下：
 
-| 导入代码    | 模块    | 包名/路径                         | 说明 |
-| ----------- | ------- | --------------------------------- | ---- |
-| mapper接口  | web-app | `com..lease.web.app.mapper`       | 略   |
-| mapper xml  | web-app | src/main/resources/mapper         | 略   |
-| service     | web-app | `com..lease.web.app.service`      | 略   |
-| serviceImpl | web-app | `com..lease.web.app.service.impl` | 略   |
+| 导入代码    | 模块    | 包名/路径                                | 说明 |
+| ----------- | ------- | ---------------------------------------- | ---- |
+| mapper接口  | web-app | `com.example.lease.web.app.mapper`       | 略   |
+| mapper xml  | web-app | src/main/resources/mapper                | 略   |
+| service     | web-app | `com.example.lease.web.app.service`      | 略   |
+| serviceImpl | web-app | `com.example.lease.web.app.service.impl` | 略   |
 
 #### 7.2.1.5 导入接口定义代码
 
 需要导入的代码和目标位置如下：
 
-| 导入代码   | 模块    | 包名/路径                       | 说明                                                |
-| ---------- | ------- | ------------------------------- | --------------------------------------------------- |
-| controller | web-app | `com..lease.web.app.controller` | 略                                                  |
-| vo         | web-app | `com..lease.web.app.vo`         | View Object，用于封装或定义接口接受及返回的数据结构 |
+| 导入代码   | 模块    | 包名/路径                              | 说明                                                |
+| ---------- | ------- | -------------------------------------- | --------------------------------------------------- |
+| controller | web-app | `com.example.lease.web.app.controller` | 略                                                  |
+| vo         | web-app | `com.example.lease.web.app.vo`         | View Object，用于封装或定义接口接受及返回的数据结构 |
 
 #### 7.2.1.6 启动项目
 
@@ -8315,7 +8315,7 @@ public class LoginController {
 
     上述`access-key-id`、`access-key-secret`需根据实际情况进行修改。
 
-  - 在**common模块**中创建`com..lease.common.sms.AliyunSMSProperties`类，内容如下
+  - 在**common模块**中创建`com.example.lease.common.sms.AliyunSMSProperties`类，内容如下
 
     ```java
     @Data
@@ -8330,7 +8330,7 @@ public class LoginController {
     }
     ```
 
-  - 在**common模块**中创建`com..lease.common.sms.AliyunSmsConfiguration`类，内容如下
+  - 在**common模块**中创建`com.example.lease.common.sms.AliyunSmsConfiguration`类，内容如下
 
     ```java
     @Configuration
@@ -8412,7 +8412,7 @@ public class LoginController {
 
   - 编写生成随机验证码逻辑
 
-    在**common模块**中创建`com..lease.common.utils.VerifyCodeUtil`类，内容如下
+    在**common模块**中创建`com.example.lease.common.utils.VerifyCodeUtil`类，内容如下
 
     ```java
     public class VerifyCodeUtil {
@@ -8557,7 +8557,7 @@ public class LoginController {
 
     - **编写AuthenticationInterceptor**
 
-      在**web-app模块**创建`com..lease.web.app.custom.interceptor.AuthenticationInterceptor`，内容如下
+      在**web-app模块**创建`com.example.lease.web.app.custom.interceptor.AuthenticationInterceptor`，内容如下
 
       ```java
       @Component
@@ -8584,7 +8584,7 @@ public class LoginController {
       
     - **注册AuthenticationInterceptor**
     
-      在**web-app模块**创建`com..lease.web.app.custom.config.WebMvcConfiguration`，内容如下
+      在**web-app模块**创建`com.example.lease.web.app.custom.config.WebMvcConfiguration`，内容如下
     
       ```java
       @Configuration
@@ -8609,7 +8609,7 @@ public class LoginController {
 
 - **查看响应数据结构**
 
-  查看**web-app模块**下的`com..lease.web.app.vo.user.UserInfoVo`，内容如下
+  查看**web-app模块**下的`com.example.lease.web.app.vo.user.UserInfoVo`，内容如下
 
   ```java
   @Schema(description = "用户基本信息")
@@ -8788,7 +8788,7 @@ public class RoomController {
 
   - **响应数据结构**
 
-    单个房间信息记录可查看`com..lease.web.app.vo.room.RoomItemVo`，内容如下：
+    单个房间信息记录可查看`com.example.lease.web.app.vo.room.RoomItemVo`，内容如下：
 
     ```java
     @Schema(description = "APP房间列表实体")
@@ -8858,18 +8858,18 @@ public class RoomController {
 
     ```xml
     <!-- result map -->
-    <resultMap id="RoomItemVoMap" type="com..lease.web.app.vo.room.RoomItemVo" autoMapping="true">
+    <resultMap id="RoomItemVoMap" type="com.example.lease.web.app.vo.room.RoomItemVo" autoMapping="true">
         <id column="id" property="id"/>
         <!--映射公寓信息-->
-        <association property="apartmentInfo" javaType="com..lease.model.entity.ApartmentInfo"
+        <association property="apartmentInfo" javaType="com.example.lease.model.entity.ApartmentInfo"
                      autoMapping="true">
             <id column="id" property="id"/>
         </association>
         <!--映射图片列表-->
-        <collection property="graphVoList" ofType="com..lease.web.app.vo.graph.GraphVo"
+        <collection property="graphVoList" ofType="com.example.lease.web.app.vo.graph.GraphVo"
                     select="selectGraphVoListByRoomId" column="id"/>
         <!--映射标签列表-->
-        <collection property="labelInfoList" ofType="com..lease.model.entity.LabelInfo"
+        <collection property="labelInfoList" ofType="com.example.lease.model.entity.LabelInfo"
                     select="selectLabelInfoListByRoomId" column="id"/>
     </resultMap>
     
@@ -8931,7 +8931,7 @@ public class RoomController {
     </select>
     
     <!-- 根据房间ID查询图片列表 -->
-    <select id="selectGraphVoListByRoomId" resultType="com..lease.web.app.vo.graph.GraphVo">
+    <select id="selectGraphVoListByRoomId" resultType="com.example.lease.web.app.vo.graph.GraphVo">
         select id,
                name,
                item_type,
@@ -8944,7 +8944,7 @@ public class RoomController {
     </select>
     
     <!-- 根据公寓ID查询标签列表 -->
-    <select id="selectLabelInfoListByRoomId" resultType="com..lease.model.entity.LabelInfo">
+    <select id="selectLabelInfoListByRoomId" resultType="com.example.lease.model.entity.LabelInfo">
         select id,
                type,
                name
@@ -9091,7 +9091,7 @@ public class RoomController {
 
 - **查看响应数据结构**
 
-  查看**web-app模块**下的`com..lease.web.app.vo.room.RoomDetailVo`，内容如下
+  查看**web-app模块**下的`com.example.lease.web.app.vo.room.RoomDetailVo`，内容如下
 
   ```java
   @Data
@@ -9204,7 +9204,7 @@ public class RoomController {
       - 在`GraphInfoMapper.xml`增加如下内容
 
         ```xml
-        <select id="selectListByItemTypeAndId" resultType="com..lease.web.app.vo.graph.GraphVo">
+        <select id="selectListByItemTypeAndId" resultType="com.example.lease.web.app.vo.graph.GraphVo">
             select name,
                    url
             from graph_info
@@ -9225,7 +9225,7 @@ public class RoomController {
       - 在`LeaseTermMapper.xml`中增加如下内容
 
         ```xml
-        <select id="selectListByRoomId" resultType="com..lease.model.entity.LeaseTerm">
+        <select id="selectListByRoomId" resultType="com.example.lease.model.entity.LeaseTerm">
             select id,
                    month_count,
                    unit
@@ -9249,7 +9249,7 @@ public class RoomController {
       - 在`FacilityInfoMapper.xml`中增加如下内容
     
         ```xml
-        <select id="selectListByRoomId" resultType="com..lease.model.entity.FacilityInfo">
+        <select id="selectListByRoomId" resultType="com.example.lease.model.entity.FacilityInfo">
             select id,
                    type,
                    name,
@@ -9274,7 +9274,7 @@ public class RoomController {
       - 在`LabelInfoMapper.xml`中增加如下内容
     
         ```xml
-        <select id="selectListByRoomId" resultType="com..lease.model.entity.LabelInfo">
+        <select id="selectListByRoomId" resultType="com.example.lease.model.entity.LabelInfo">
             select id,
                    type,
                    name
@@ -9298,7 +9298,7 @@ public class RoomController {
       - 在`PaymentTypeMapper.xml`中增加如下内容
     
         ```xml
-        <select id="selectListByRoomId" resultType="com..lease.model.entity.PaymentType">
+        <select id="selectListByRoomId" resultType="com.example.lease.model.entity.PaymentType">
             select id,
                    name,
                    pay_month_count,
@@ -9323,7 +9323,7 @@ public class RoomController {
       - 在`AttrValueMapper.xml`中增加如下内容
     
         ```xml
-        <select id="selectListByRoomId" resultType="com..lease.web.app.vo.attr.AttrValueVo">
+        <select id="selectListByRoomId" resultType="com.example.lease.web.app.vo.attr.AttrValueVo">
             select av.id,
                    av.name,
                    av.attr_key_id,
@@ -9349,7 +9349,7 @@ public class RoomController {
       - 在`FeeValueMapper.xml`中增加如下内容
     
         ```xml
-        <select id="selectListByApartmentId" resultType="com..lease.web.app.vo.fee.FeeValueVo">
+        <select id="selectListByApartmentId" resultType="com.example.lease.web.app.vo.fee.FeeValueVo">
             select fv.id,
                    fv.name,
                    fv.unit,
@@ -9412,7 +9412,7 @@ public class RoomController {
     - 在`LabelInfoMapper.xml`中增加如下内容
   
       ```xml
-        <select id="selectListByApartmentId" resultType="com..lease.model.entity.LabelInfo">
+        <select id="selectListByApartmentId" resultType="com.example.lease.model.entity.LabelInfo">
             select id,
                    type,
                    name
@@ -9457,7 +9457,7 @@ public class RoomController {
 
   - **响应的数据结构**
 
-    - 查看**web-admin模块**下的`com..lease.web.app.vo.room.RoomItemVo`，如下
+    - 查看**web-admin模块**下的`com.example.lease.web.app.vo.room.RoomItemVo`，如下
 
       ```java
       @Schema(description = "APP房间列表实体")
@@ -9577,7 +9577,7 @@ public class ApartmentController {
 
 - **查看响应的数据结构**
 
-  查看**web-app模块**下的`com..lease.web.app.vo.apartment.ApartmentDetailVo`，内容如下
+  查看**web-app模块**下的`com.example.lease.web.app.vo.apartment.ApartmentDetailVo`，内容如下
 
   ```java
   @Data
@@ -9659,7 +9659,7 @@ public class ApartmentController {
     - 在`FacilityInfoMapper.xml`中增加如下内容
 
       ```xml
-      <select id="selectListByApartmentId" resultType="com..lease.model.entity.FacilityInfo">
+      <select id="selectListByApartmentId" resultType="com.example.lease.model.entity.FacilityInfo">
           select id,
                  type,
                  name,
@@ -9701,7 +9701,7 @@ public class BrowsingHistoryController {
 
   - **响应的数据结构**
 
-    查看**web-admin模块**下的`com..lease.web.app.vo.history.HistoryItemVo`，如下
+    查看**web-admin模块**下的`com.example.lease.web.app.vo.history.HistoryItemVo`，如下
 
     ```java
     @Data
@@ -9773,10 +9773,10 @@ public class BrowsingHistoryController {
   - 在`BrowsingHistoryMapper.xml`中增加如下逻辑
 
     ```xml
-    <resultMap id="HistoryItemVoMap" type="com..lease.web.app.vo.history.HistoryItemVo" autoMapping="true">
+    <resultMap id="HistoryItemVoMap" type="com.example.lease.web.app.vo.history.HistoryItemVo" autoMapping="true">
         <id property="id" column="id"/>
         <result property="roomId" column="room_id"/>
-        <collection property="roomGraphVoList" ofType="com..lease.web.app.vo.graph.GraphVo"
+        <collection property="roomGraphVoList" ofType="com.example.lease.web.app.vo.graph.GraphVo"
                     select="selectGraphVoByRoomId" column="room_id"/>
     </resultMap>
     
@@ -9799,7 +9799,7 @@ public class BrowsingHistoryController {
         order by browse_time desc
     </select>
     
-    <select id="selectGraphVoByRoomId" resultType="com..lease.web.app.vo.graph.GraphVo">
+    <select id="selectGraphVoByRoomId" resultType="com.example.lease.web.app.vo.graph.GraphVo">
         select url,
                name
         from graph_info
@@ -9930,7 +9930,7 @@ public Result saveOrUpdate(@RequestBody ViewAppointment viewAppointment) {
 
 - **查看响应的数据结构**
 
-  查看**web-app模块**下的`com..lease.web.app.vo.appointment.AppointmentItemVo`，如下
+  查看**web-app模块**下的`com.example.lease.web.app.vo.appointment.AppointmentItemVo`，如下
 
   ```java
   @Data
@@ -9996,10 +9996,10 @@ public Result saveOrUpdate(@RequestBody ViewAppointment viewAppointment) {
   - 在`ViewAppointmentMapper.xml`中增加如下内容
 
     ```xml
-    <resultMap id="AppointmentItemVoMap" type="com..lease.web.app.vo.appointment.AppointmentItemVo"
+    <resultMap id="AppointmentItemVoMap" type="com.example.lease.web.app.vo.appointment.AppointmentItemVo"
                autoMapping="true">
         <id column="id" property="id"/>
-        <collection property="graphVoList" ofType="com..lease.web.app.vo.graph.GraphVo" autoMapping="true"/>
+        <collection property="graphVoList" ofType="com.example.lease.web.app.vo.graph.GraphVo" autoMapping="true"/>
     </resultMap>
     
     <select id="listItemByUserId" resultMap="AppointmentItemVoMap">
@@ -10022,7 +10022,7 @@ public Result saveOrUpdate(@RequestBody ViewAppointment viewAppointment) {
 
 - **查看相应的数据结构**
 
-  查看`web-app模块`下的`com..lease.web.app.vo.appointment.AppointmentDetailVo`，内容如下
+  查看`web-app模块`下的`com.example.lease.web.app.vo.appointment.AppointmentDetailVo`，内容如下
 
   ```java
   @Data
@@ -10095,7 +10095,7 @@ public class LeaseAgreementController {
 
 - **查看响应的数据结构**
 
-  查看**web-appp模块**下的`com..lease.web.app.vo.agreement.AgreementItemVo`，内容如下
+  查看**web-appp模块**下的`com.example.lease.web.app.vo.agreement.AgreementItemVo`，内容如下
 
   ```java
   @Data
@@ -10174,9 +10174,9 @@ public class LeaseAgreementController {
   - 在`LeaseAgreementMapper.xml`中增加如下内容
 
     ```xml
-    <resultMap id="AgreementItemVoMap" type="com..lease.web.app.vo.agreement.AgreementItemVo" autoMapping="true">
+    <resultMap id="AgreementItemVoMap" type="com.example.lease.web.app.vo.agreement.AgreementItemVo" autoMapping="true">
         <id property="id" column="id"/>
-        <collection property="roomGraphVoList" ofType="com..lease.web.app.vo.graph.GraphVo" autoMapping="true"/>
+        <collection property="roomGraphVoList" ofType="com.example.lease.web.app.vo.graph.GraphVo" autoMapping="true"/>
     </resultMap>
     
     <select id="listItemByPhone" resultMap="AgreementItemVoMap">
@@ -10205,7 +10205,7 @@ public class LeaseAgreementController {
 
 - **查看响应的数据结构**
 
-  查看**web-app模块**下的`com..lease.web.app.vo.agreement.AgreementDetailVo`，内容如下
+  查看**web-app模块**下的`com.example.lease.web.app.vo.agreement.AgreementDetailVo`，内容如下
 
   ```java
   @Data
@@ -10461,7 +10461,7 @@ public class LeaseAgreementController {
 
 本项目使用Reids保存缓存数据，因此我们需要使用RedisTemplate进行读写操作。前文提到过，`Spring-data-redis`提供了`StringRedisTemplate`和`RedisTemplate<Object,Object>`两个实例，但是两个实例均不满足我们当前的需求，所以我们需要自定义RedisTemplate。
 
-在**common模块**中创建`com..lease.common.redis.RedisConfiguration`类，内容如下
+在**common模块**中创建`com.example.lease.common.redis.RedisConfiguration`类，内容如下
 
 ```java
 @Configuration
@@ -10480,7 +10480,7 @@ public class RedisConfiguration {
 
 **2.编写缓存逻辑**
 
-修改**web-app模块**中的`com..lease.web.app.service.impl.RoomInfoServiceImpl`中的`getDetailById`方法，如下
+修改**web-app模块**中的`com.example.lease.web.app.service.impl.RoomInfoServiceImpl`中的`getDetailById`方法，如下
 
 ```java
 @Override
@@ -10533,7 +10533,7 @@ public RoomDetailVo getDetailById(Long id) {
 
 为保证缓存数据的一致性，在房间信息发生变化时，需要删除相关缓存。
 
-修改**web-admin模块**中的`com..lease.web.admin.service.impl.RoomInfoServiceImpl`中的`saveOrUpdateRoom`方法，如下
+修改**web-admin模块**中的`com.example.lease.web.admin.service.impl.RoomInfoServiceImpl`中的`saveOrUpdateRoom`方法，如下
 
 ```java
 @Override
@@ -10585,7 +10585,7 @@ public void saveOrUpdateRoom(RoomSubmitVo roomSubmitVo) {
 }
 ```
 
-修改**web-admin模块**中的`com..lease.web.admin.service.impl.RoomInfoServiceImpl`中的`removeRoomById`方法，如下
+修改**web-admin模块**中的`com.example.lease.web.admin.service.impl.RoomInfoServiceImpl`中的`removeRoomById`方法，如下
 
 ```java
 @Override
