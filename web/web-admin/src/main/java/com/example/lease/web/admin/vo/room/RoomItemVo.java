@@ -1,6 +1,6 @@
 package com.example.lease.web.admin.vo.room;
 
-import com.example.lease.model.entity.ApartmentInfo;
+import  com.example.lease.model.entity.ApartmentInfo;
 import com.example.lease.model.entity.RoomInfo;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
