@@ -6423,32 +6423,40 @@ public class ViewAppointmentController {
     ```xml
     <resultMap id="AppointmentVoMap" type="com.example.lease.web.admin.vo.appointment.AppointmentVo" autoMapping="true">
         <id property="id" column="id"/>
-        <association property="apartmentInfo" javaType="com.example.lease.model.entity.ApartmentInfo" autoMapping="true">
+        <association property="apartmentInfo" javaType="com.example.lease.model.entity.ApartmentInfo"
+                     autoMapping="true">
             <id property="id" column="apartment_id"/>
             <result property="name" column="apartment_name"/>
+            <result property="phone" column="apartment_phone"/>
         </association>
     </resultMap>
     
     <select id="pageAppointmentByQuery" resultMap="AppointmentVoMap">
         select va.id,
-               va.user_id,
-               va.name,
-               va.phone,
-               va.appointment_time,
-               va.additional_info,
-               va.appointment_status,
-               ai.id   apartment_id,
-               ai.name apartment_name,
-               ai.district_id,
-               ai.district_name,
-               ai.city_id,
-               ai.city_name,
-               ai.province_id,
-               ai.province_name
+        va.user_id,
+        va.name,
+        va.phone,
+        va.apartment_id,
+        va.appointment_time,
+        va.additional_info,
+        va.appointment_status,
+        ai.id apartment_id,
+        ai.name apartment_name,
+        ai.introduction,
+        ai.district_id,
+        ai.district_name,
+        ai.city_id,
+        ai.city_name,
+        ai.province_id,
+        ai.province_name,
+        ai.address_detail,
+        ai.latitude,
+        ai.longitude,
+        ai.phone apartment_phone,
+        ai.is_release
         from view_appointment va
-                 left join
-             apartment_info ai
-             on va.apartment_id = ai.id and ai.is_deleted=0
+        left join apartment_info ai
+        on va.apartment_id = ai.id and ai.is_deleted=0
         <where>
             va.is_deleted = 0
             <if test="queryVo.provinceId != null">
