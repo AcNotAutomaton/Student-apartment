@@ -9,6 +9,7 @@ target/
 .idea/jarRepositories.xml
 .idea/compiler.xml
 .idea/libraries/
+web/web-app/src/main/resources/application.yml
 *.iws
 *.iml
 *.ipr
