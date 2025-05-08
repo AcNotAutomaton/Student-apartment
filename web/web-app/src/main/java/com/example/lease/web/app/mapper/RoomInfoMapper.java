@@ -17,4 +17,9 @@ import java.math.BigDecimal;
 */
 public interface RoomInfoMapper extends BaseMapper<RoomInfo> {
 
+    IPage<RoomItemVo> pageRoomItemByQuery(Page<RoomItemVo> page, RoomQueryVo queryVo);
+
+    BigDecimal selectMinRentByApartmentId(Long id);
+
+    IPage<RoomItemVo> pageItemByApartmentId(IPage<RoomItemVo> page, Long id);
 }
