@@ -8338,7 +8338,7 @@ public class LoginController {
     }
     ```
 
-  - 在**common模块**中创建`com.example.lease.common.sms.AliyunSmsConfiguration`类，内容如下
+  - 在**common模块**中创建`com.example.lease.common.sms.AliyunSMSConfiguration`类，内容如下
 
     ```java
     @Configuration
@@ -8651,15 +8651,15 @@ public class LoginController {
   - 在`LoginService`中增加如下内容
 
     ```java
-    UserInfoVo getUserInfoId(Long id);
+    UserInfoVo getUserInfoById(Long userId);
     ```
 
   - 在`LoginServiceImpl`中增加如下内容
 
     ```java
     @Override
-    public UserInfoVo getUserInfoId(Long id) {
-        UserInfo userInfo = userInfoService.getById(id);
+    public UserInfoVo getUserInfoById(Long userId) {
+        UserInfo userInfo = userInfoService.getById(userId);
         return new UserInfoVo(userInfo.getNickname(), userInfo.getAvatarUrl());
     }
     ```
