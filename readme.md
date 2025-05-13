@@ -9624,14 +9624,14 @@ public class ApartmentController {
   - 在`ApartmentInfoService`中增加如下内容
 
     ```java
-    ApartmentDetailVo getDetailById(Long id);
+    ApartmentDetailVo getApartmentDetailById(Long id);
     ```
 
   - 在`ApartmentInfoServiceImpl`中增加如下内容
 
     ```java
     @Override
-    public ApartmentDetailVo getDetailById(Long id) {
+    public ApartmentDetailVo getApartmentDetailById(Long id) {
         //1.查询公寓信息
         ApartmentInfo apartmentInfo = apartmentInfoMapper.selectById(id);
         //2.查询图片信息
@@ -9824,7 +9824,7 @@ public class BrowsingHistoryController {
   保存浏览历史的动作应该在浏览房间详情时触发，所以在`RoomInfoServiceImpl`中的`getDetailById`方法的最后增加如下内容
 
   ```java
-  browsingHistoryService.saveHistory(LoginUserContext.getLoginUser().getUserId(), id);
+  browsingHistoryService.saveHistory(LoginUserHolder.getLoginUser().getUserId(), id);
   ```
 
 - **编写Service层逻辑**
